@@ -322,3 +322,21 @@ let remove_at k lst =
     | [] -> acc
     | h :: t -> aux (h :: acc) k (pos + 1) t
   in List.rev (aux [] k 0 lst)
+
+let rec remove_at n = function
+  | [] -> []
+  | h :: t -> if n = 0 then t else h :: remove_at (n - 1) t
+
+
+(* Insert an element at a given position into a list *)
+let insert_at elem pos lst =
+  assert (pos > -1); 
+  let rec aux acc elem pos = function
+  | [] -> List.rev elem :: acc
+  | h :: t -> if pos = 0 then List.append (List.rev (h :: elem :: acc)) t else aux (h :: acc) elem (pos - 1) t
+in aux [] elem pos lst
+
+let rec insert_at x n = function
+  | [] -> [x]
+  | h :: t as l -> if n = 0 then x :: l else h :: insert_at x (n - 1) t;;
+
