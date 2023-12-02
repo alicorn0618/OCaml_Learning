@@ -73,3 +73,69 @@ let x = 5 in
 
 let x = 5;;
 
+let x = "big";;
+let b = "red";;
+
+let x = 6 in x;;
+let y = 6 in y;;
+
+let x = 5 in (let x = 6 in x) + x;;
+
+
+let x = 5 in ((let x = 6 in x) + x);;
+
+let x = 5 in (x + (let x = 6 in x));;
+
+(5 : int);;
+
+(5. : float) +. 1.1;;
+
+(** 2.4 Functions *)
+
+let x = 42;;
+
+let rec fact n = if n = 0 then 1 else n * fact (n - 1);;
+
+let rec pow x y = if y = 0 then 1 else x * pow x (y - 1);;
+
+let rec even n =
+  n = 0 || odd (n - 1)
+and odd n =
+  n <> 0 && even (n - 1);;
+
+
+let inc x = x + 1;;
+let inc = fun x -> x + 1;;
+
+(** pipeline *)
+let square x = x * x;;
+
+square (inc 5);;
+5 |> inc |> square;;
+
+5 |> inc |> square |> inc |> inc |> square;;
+square (inc (inc (square (inc 5))));;
+
+
+(** Polymorphic Functions*)
+
+let id x = x;;
+
+let id = fun x -> x;;
+
+id 42;;
+id true;;
+id "bigred";;
+
+let id_int (x: int) : int = x;;
+
+let id_int' : int -> int = id;;
+
+let first x y = x;;
+let firt_int : int -> 'b -> int = first;;
+String.sub;;
+
+let f ~name1:arg1 ~name2:arg2 = arg1 + arg2;;
+
+f ~name2:3 ~name1:4;;
+
