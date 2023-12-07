@@ -139,3 +139,53 @@ let f ~name1:arg1 ~name2:arg2 = arg1 + arg2;;
 
 f ~name2:3 ~name1:4;;
 
+let f ~name1:(arg1 : int) ~name2:(arg2 : int) = arg1 + arg2;;
+
+let f ?name:(arg1=8) arg2 = arg1 + arg2;;
+
+f ~name:2 7;;
+f 7;;
+
+let add x y = x + y;;
+let addx x = fun y -> x + y;;
+
+let add5 = addx 5;;
+let add5 = add 5;;
+
+let add x y = x + y;;
+let add x = fun y -> x + y;;
+let add = fun x -> (fun y -> x + y);;
+
+(* Every OCaml function takes exactly one argument. *)
+( + );;
+
+let add3 = ( + ) 3;;
+add3 2;;
+
+let ( ^^ ) x y = max x y;;
+
+let rec count n = 
+  if n = 0 then 0 else 1 + count (n - 1);;
+
+
+let rec count_tl n sum = match n with
+| 0 -> sum
+| _ -> count_tl (n - 1) (sum + 1);;
+
+let count n = count_tl n 0;;
+
+let rec fact n = match n with
+  | 0 -> 1
+  | _ -> n * fact (n - 1);;
+
+let fact n = let rec fact_aux n sum =
+  match n with
+  | 0 -> sum
+  | _ -> fact_aux (n - 1) (sum * n)
+in fact_aux n;;
+
+#require "zarith.top";;
+
+let rec zfact_aux n acc =
+  match n with
+  | Z.
