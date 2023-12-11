@@ -182,10 +182,39 @@ let fact n = let rec fact_aux n sum =
   match n with
   | 0 -> sum
   | _ -> fact_aux (n - 1) (sum * n)
-in fact_aux n;;
+in fact_aux n 1;;
 
-#require "zarith.top";;
+(* #require "zarith.top";;
 
 let rec zfact_aux n acc =
   match n with
-  | Z.
+  | Z.equal n Z.zero -> acc
+  | _ -> zfact_aux (Z.pred n) (Z.mul acc n);;
+
+let zfact n = zfact_aux n Z.one;; *)
+
+(** @author hugh (Dennis.Chen@sjtu.edu.cn)*)
+
+(** Sum a list.
+    @param [lst] is the List to be summed
+    @return the sum of the list *)
+let rec sum lst = match lst with   
+  | [] -> 0
+  | h::t -> h + sum t;;
+
+let () = print_endline "Camels" in
+let _ = print_endline "are" in
+print_endline "bae";;
+
+print_endline "Camels";
+print_endline "are";
+print_endline "bae";;
+
+
+let print_stat name num = 
+  Printf.printf "%s: %f\n%!" name num;;
+(* %! means to flush the output buffer *)
+
+let rec fib x = if x < 2 then 1 else fib (x - 1) + fib (x - 2);;
+
+( lsl );
